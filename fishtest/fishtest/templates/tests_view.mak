@@ -48,7 +48,7 @@ var spsa_history_url = '${run_args[0][1]}/spsa_history';
   </form>
 %if not run.get('approved', False):
   <span>
-    <a href="https://github.com/mcostalba/Stockfish/compare/master...${run['args']['resolved_base'][:7]}" target="_blank">Master diff</a>
+    <a href="https://github.com/official-stockfish/Stockfish/compare/master...${run['args']['resolved_base'][:7]}" target="_blank">Master diff</a>
     <form action="/tests/approve" method="POST" style="display:inline">
       <input type="hidden" name="run-id" value="${run['_id']}">
       <button type="submit" class="btn btn-success">
@@ -77,6 +77,9 @@ var spsa_history_url = '${run_args[0][1]}/spsa_history';
 
     <label class="control-label">Adjust priority (higher is more urgent):</label>
     <input name="priority" value="${run['args']['priority']}">
+
+    <label class="control-label">Adjust throughput:</label>
+    <input name="throughput" value="${run['args'].get('throughput', 1000)}">
 
     <input type="hidden" name="run" value="${run['_id']}" />
     <button type="submit" class="btn btn-primary">Modify</button>
@@ -110,7 +113,7 @@ Gaussian Kernel Smoother&nbsp;&nbsp;<div class="btn-group"><button id="btn_smoot
 </div>
 <div class="btn-group">
 <button id="btn_view_individual" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-    View Indiviual Parameter<span class="caret"></span>
+    View Individual Parameter<span class="caret"></span>
   </button>
   <ul class="dropdown-menu" role="menu" id="dropdown_individual"></ul>
 </div>

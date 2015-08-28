@@ -4,6 +4,10 @@
 
 <form class="form-horizontal" action="${request.url}" method="POST">
   <legend>Create New Test</legend>
+  Please read the <a href="https://github.com/glinscott/fishtest/wiki/Creating-my-first-test">Testing Guidelines</a> before
+  creating your test.
+
+  <br><br>
   <div class="control-group">
     <label class="control-label">Test type:</label>
     <div class="controls">
@@ -22,7 +26,7 @@
   <div class="control-group">
     <label class="control-label">Test options:</label>
     <div class="controls">
-    <input name="new-options" value="${args.get('new_options', 'Hash=128 OwnBook=false')}">
+    <input name="new-options" value="${args.get('new_options', 'Hash=128')}">
     </div>
   </div>
   <div class="control-group">
@@ -40,7 +44,7 @@
   <div class="control-group">
     <label class="control-label">Base options:</label>
     <div class="controls">
-    <input name="base-options" value="${args.get('base_options', 'Hash=128 OwnBook=false')}">
+    <input name="base-options" value="${args.get('base_options', 'Hash=128')}">
     </div>
   </div>
   <div class="control-group">
@@ -72,13 +76,13 @@
   <div class="control-group stop_rule sprt">
     <label class="control-label">SPRT Elo0:</label>
     <div class="controls">
-      <input name="sprt_elo0" value="${args.get('sprt', {'elo0': -1.5})['elo0']}">
+      <input name="sprt_elo0" value="${args.get('sprt', {'elo0': 0})['elo0']}">
     </div>
   </div>
   <div class="control-group stop_rule sprt">
     <label class="control-label">SPRT Elo1:</label>
     <div class="controls">
-      <input name="sprt_elo1" value="${args.get('sprt', {'elo1': 4.5})['elo1']}">
+      <input name="sprt_elo1" value="${args.get('sprt', {'elo1': 5})['elo1']}">
     </div>
   </div>
   <div class="control-group stop_rule spsa">
@@ -121,7 +125,7 @@ Cowardice,150,0,200,10,0.0020"""})['raw_params']}</textarea>
   <div class="control-group">
     <label class="control-label">Book:</label>
     <div class="controls">
-      <input name="book" value="${args.get('book', '8moves_v3.pgn')}">
+      <input name="book" value="${args.get('book', '2moves_v1.pgn')}">
     </div>
   </div>
   <div class="control-group">
@@ -134,6 +138,12 @@ Cowardice,150,0,200,10,0.0020"""})['raw_params']}</textarea>
     <label class="control-label">Priority:</label>
     <div class="controls">
       <input name="priority" value="${args.get('priority', 0)}">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label">Throughput:</label>
+    <div class="controls">
+      <input name="throughput" value="${args.get('throughput', 1000)}">
     </div>
   </div>
   <div class="control-group">
@@ -177,14 +187,14 @@ $(function() {
   $('select[name=stop_rule]').change(update_visibility);
 
   $('#fast_test').click(function() {
-    $('input[name=sprt_elo0]').val('-1.5');
-    $('input[name=sprt_elo1]').val('4.5');
+    $('input[name=sprt_elo0]').val('0');
+    $('input[name=sprt_elo1]').val('5');
     $('input[name=tc]').val('15+0.05');
   });
 
   $('#slow_test').click(function() {
-    $('input[name=sprt_elo0]').val('0.0');
-    $('input[name=sprt_elo1]').val('6.0');
+    $('input[name=sprt_elo0]').val('0');
+    $('input[name=sprt_elo1]').val('5');
     $('input[name=tc]').val('60+0.05');
   });
 });
